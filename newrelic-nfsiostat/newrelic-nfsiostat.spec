@@ -65,6 +65,10 @@ install -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/
 %{python2_sitelib}/*
 
 %changelog
+* Sun Jan 20 2019 Reto Gantenbein <reto.gantenbein@linuxmonk.ch> 0.2.5-2
+- Rework for CentOS 7 and Fedora
+- Include patch for NFSv4 fix
+
 * Mon Nov 24 2014 Tommy McNeely <tommy@lark-it.com> 0.2.5-1
 - fixes #16 - More complete fix to the /dev/tty issues (See Issue #7)
 
