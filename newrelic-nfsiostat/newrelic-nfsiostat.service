@@ -1,0 +1,14 @@
+[Unit]
+Description=New Relic NFSIOStat Service
+After=network-online.target remote-fs.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/newrelic-nfsiostat start
+ExecStop=/usr/bin/newrelic-nfsiostat stop
+PIDFile=/var/run/newrelic-nfsiostat.pid
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,37 @@
+commit 5975cd836a47e7fd0b9bed5a43f9971f4e06cddf
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Sun Jan 20 14:43:21 2019 +0100
+
+    Remove sysvinit support
+
+diff --git a/setup.py b/setup.py
+index eb1452d..7e7a5e8 100644
+--- a/setup.py
++++ b/setup.py
+@@ -4,14 +4,6 @@ from distutils.core import setup, Extension
+ import ConfigParser
+ import os
+ 
+-releaseFile = open('/etc/redhat-release','r')
+-distro_test = releaseFile.read()
+-d_version = distro_test[0].split()[0]
+-if d_version == 'Fedora':
+-    on_fedora = True
+-else:
+-    on_fedora = False
+-
+ exec(open('src/_version.py').read())
+ name = 'newrelic-nfsiostat'
+ version = __version__
+@@ -19,11 +11,6 @@ data_files=[
+     ('/etc',['conf/newrelic-nfsiostat.conf']),
+     ('/usr/share/doc/%s-%s'% (name, version), ['doc/README','doc/LICENSE']),
+ ]
+-if on_fedora:
+-    data_files.append(('/usr/lib/systemd/system', ['scripts/newrelic-nfsiostat.service']))
+-else:
+-    data_files.append(('/etc/rc.d/init.d', ['scripts/init/newrelic-nfsiostat']))
+- 
+ setup(
+     name=name,
+     version=version,

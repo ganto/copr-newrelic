@@ -1,0 +1,18 @@
+commit 432ea8d94c33a5717e792a9ab308771d70888cfd
+Author: Reto Gantenbein <reto.gantenbein@linuxmonk.ch>
+Date:   Sun Jan 20 14:44:04 2019 +0100
+
+    Don't install doc
+
+diff --git a/setup.py b/setup.py
+index 7e7a5e8..b0b02c3 100644
+--- a/setup.py
++++ b/setup.py
+@@ -9,7 +9,6 @@ name = 'newrelic-nfsiostat'
+ version = __version__
+ data_files=[
+     ('/etc',['conf/newrelic-nfsiostat.conf']),
+-    ('/usr/share/doc/%s-%s'% (name, version), ['doc/README','doc/LICENSE']),
+ ]
+ setup(
+     name=name,

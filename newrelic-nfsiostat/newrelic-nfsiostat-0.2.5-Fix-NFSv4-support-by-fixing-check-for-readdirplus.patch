@@ -1,0 +1,24 @@
+From 8ca00cffbe51c4eccf0bc965bd676878ec0af8a4 Mon Sep 17 00:00:00 2001
+From: Joe Crobak <joecrow@gmail.com>
+Date: Tue, 29 Sep 2015 00:54:07 +0000
+Subject: [PATCH] Fix NFSv4 support by fixing check for readdirplus
+
+The check for readdirplus (which is needed to support NFSv4) should
+use string equality.
+---
+ src/plugin.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/plugin.py b/src/plugin.py
+index dec2781..282a63e 100644
+--- a/src/plugin.py
++++ b/src/plugin.py
+@@ -182,7 +182,7 @@ def _get_nfs_stat_for(self, volume, prefix='Component/NFS/Volume'):
+             }
+ 
+             for op in (self.nfs_ops):
+-                if op.upper() is 'READDIRPLUS' and not volnfsstat.has_readdirplus():
++                if op.upper() == 'READDIRPLUS' and not volnfsstat.has_readdirplus():
+                     # NFSv4 mounts do not have READDIRPLUS
+                     continue
+                 op_stat = volnfsstat.get_rpc_op_stats(op.upper(), self.duration)
